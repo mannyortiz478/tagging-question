@@ -14,6 +14,7 @@ export class TaggingQuestion extends DDD {
     super();
     this.users = [];
     this.answerBlocks = []; // Array to store answer blocks
+    //Need to figure out how to encode the array
     this.correctAnswers = ["Answer Option 1", "Answer Option 2"]; // Array of correct answers
   }
 
@@ -60,6 +61,7 @@ export class TaggingQuestion extends DDD {
 
         /* Add styles for answer options and the drop zone */
         .answer-options-section, .answer-drop-zone {
+            background-color: var(--ddd-theme-default-skyBlue);
             font-size: 16px;
             font-weight: bold;
             margin-bottom: 10px;
@@ -67,27 +69,28 @@ export class TaggingQuestion extends DDD {
         .answer-options {
             display: flex;
             flex-wrap: wrap;
-            gap: 10px;
+            margin: 10px;
         }
         .answer-option {
-            background-color: white;
+            background-color: var(--ddd-theme-default-slateGray);
             padding: 10px;
             border: 1px solid black;
             border-radius: 4px;
             cursor: move;
         }
+        //This is where users can drag and drop the answers
         .answer-drop-zone {
             background-color: #f8f8f8;
             padding: 20px;
             border: 2px solid black;
             border-radius: 4px;
-            height: 150px; /* Adjust height as needed */
+            height: 150px; 
             overflow-y: auto;
         }
         .dropped-answers {
             display: flex;
             flex-direction: column;
-            gap: 10px;
+            margin: 10px;
         }
     `;
   }
@@ -146,6 +149,7 @@ export class TaggingQuestion extends DDD {
             height="200" />
           <p class="image-caption">Caption of the image</p>
           <p class="image-description">Description of the image</p>
+          <!-- Want to make it like the fancy card, where when you toggle it opens the description -->
         </div>
 
         <!-- Answer Options Section -->
