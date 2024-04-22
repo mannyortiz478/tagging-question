@@ -1,0 +1,80 @@
+{
+    "default": {
+    "default btn - true": {
+      "correct": true,
+      "feedback": "default feedback option true"
+    },
+    "default btn - false": {
+      "correct": false,
+      "feedback": "default feedback option false"
+    }
+  },
+    "hax-logo": {
+      "Good form": {
+        "correct": true,
+        "feedback": "The shape of the vase clearly demonstrates craftsmanship."
+      },
+      "Poor taste": {
+        "correct": false,
+        "feedback": "Taste is in the eye of the designer as well as the viewer."
+      },
+      "Contrasting themes": {
+        "correct": false,
+        "feedback": "There is uniformity in the shape, but there is no depth to this media to imply that it is contrasting with other figures."
+      },
+      "AI": {
+        "correct": true,
+        "feedback": "While a modification of prior work, this is still AI generative work."
+      },
+      "Shading": {
+        "correct": false,
+        "feedback": "While there is a light source and a shadow cast, shading is a term used for pencil based sketching."
+      },
+      "Original work": {
+        "correct": false,
+        "feedback": "Artwork created from gerenateive AI can not be original since it is trained on other artists work."
+      },
+      "Accessible": {
+        "correct": false,
+        "feedback": "The color scheme while high contrast in some areas, loses form in others and has written text unrelated to the character."
+      }
+    },
+    "pig": {
+      "Has a Hat": {
+        "correct": true,
+        "feedback": "Has a mix of brown, red and blue"
+      },
+      "Is a pig": {
+        "correct": true,
+        "feedback": "Its someones pet pig."
+      },
+      "There are flowers": {
+        "correct": true,
+        "feedback": "The WDW Cinderella Castle is in the background."
+      },
+      "Is wearing a jacket": {
+        "correct": false,
+        "feedback": "Is not wearing a jacket, its more of a sweater."
+      },
+      "Wearing a hoodie": {
+        "correct": true,
+        "feedback": "The pig is wearing a pink hoodie."
+      },
+      "Standing": {
+        "correct": true,
+        "feedback": "The pig is standing, even though it may look like its not"
+      },
+      "Contrasting themes": {
+        "correct": false,
+        "feedback": "There is uniformity in the shape, but there is no depth to this media to imply that it is contrasting with other figures."
+      },
+      "AI": {
+        "correct": false,
+        "feedback": "This picture was taken with an iphone camera, so this is not AI generative work."
+      },
+      "Accessible": {
+        "correct": false,
+        "feedback": "The color scheme while high contrast in some areas, loses form in others and has written text unrelated to the character."
+      }
+    }
+  }

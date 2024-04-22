@@ -24,11 +24,25 @@
 </head>
 
 <body>
-  <tagging-question></tagging-question>
+
+  <tagging-question
+  question="Which tags best describe this image?"
+  description="A Vietnamese Pot-bellied pig wearing a hat and a piece of clothing."
+  imageURL="https://th.bing.com/th/id/R.63047ae94657c6cefda291138c5ad76c?rik=jrdUAv9oRKGVuA&riu=http%3a%2f%2fwww.dumpaday.com%2fwp-content%2fuploads%2f2017%2f03%2frandom-pictures-33-2.jpg&ehk=qyN0BotHhfarLi40WWV5iKhaJQ2r0mrf857I4Xj%2bTpg%3d&risl=&pid=ImgRaw&r=0"
+  answerset="pig"
+  ></tagging-question>
+
+  <tagging-question
+  question="Which tags best describe this image?"
+  description="The logo of the best open source project."
+  imageURL="https://iam.hax.psu.edu/emo5318/sites/mannyortiz/assets/banner.jpg"
+  answerset="hax-logo"
+  >  
+  </tagging-question>
 
   <!-- this is what is bringing in the definition for this tag -->
   <script type="module" src="./src/polaris-chip.js"></script>
-  <script type="module" src="./src/my-card.js"></script>
+  <script type="module" src="./src/tagging-question.js"></script>
 </body>
 
 </html>
