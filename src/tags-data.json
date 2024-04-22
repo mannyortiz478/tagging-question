@@ -50,7 +50,7 @@
       },
       "There are flowers": {
         "correct": true,
-        "feedback": "The WDW Cinderella Castle is in the background."
+        "feedback": "There are some pink flowers"
       },
       "Is wearing a jacket": {
         "correct": false,
