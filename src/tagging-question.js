@@ -14,6 +14,7 @@ export class TaggingQuestion extends LitElement {
     this.checked = false;
     this.answerSet = "default";
     this.showDescription = false;
+    this.source = new URL('../src/tags-data.json', import.meta.url).href;
   }
 
   static get styles() {
@@ -108,16 +109,12 @@ export class TaggingQuestion extends LitElement {
         text-align: center;
       }
 
-      #image {
+      .image {
         max-width: 25%;
         height: auto;
         border: solid 3px var(--ddd-theme-default-skyBlue);
         border-radius: var(--ddd-radius-sm);
         margin: 2.5%;
-        }
-
-        #image:hover {
-            transform: scale(1.2);
         }
 
         .description-btn {
@@ -242,7 +239,7 @@ export class TaggingQuestion extends LitElement {
 
     const answerSet = this.answerSet;
 
-    fetch('src/tags-data.json')
+    fetch(this.source)
       .then((response) => response.json())
       .then((json) => {
         const bankedTags = this.shadowRoot.getElementById('bankedTags');
@@ -388,7 +385,6 @@ export class TaggingQuestion extends LitElement {
     }
   }
 
-
   resetTags() {
     // make it so it can be checked again:
     this.checked = false;
@@ -524,7 +520,7 @@ export class TaggingQuestion extends LitElement {
     return html`
       <confetti-container id="confetti">
         <div style="width: 100%; display: flex; justify-content: center;">
-          <img id="image" src=${this.imageURL}>
+          <img class="image" src=${this.imageURL}>
         </div>
         <div>
           <button class="description-btn" @click=${this.toggleDescription}>Click to view Description</button>
@@ -537,6 +533,15 @@ export class TaggingQuestion extends LitElement {
             <div id="dropTagHint">Drop your answer choices here</div>
         </div>
         <div id="feedbackSection">
+          ${Array.from(this.shadowRoot.querySelectorAll('#droppedTags .chip')).map(tag => {
+            const isCorrect = tag.dataset.correct === 'true';
+            return html`
+              <li>
+                <span class="chip ${isCorrect ? 'correct' : 'incorrect'}">${tag.textContent}</span>
+                ${isCorrect ? html`<span class="green">${tag.dataset.feedback}</span>` : html`<span class="red">Incorrect: ${tag.dataset.feedback}</span>`}
+              </li>
+            `;
+          })}
         </div>
         <div id="bankedTags" @click=${this.bankedClicked} @dragover=${this.handleDragOverReverse} @drop=${this.handleDropReverse}>
         </div>
@@ -551,6 +556,7 @@ export class TaggingQuestion extends LitElement {
       </confetti-container>
     `;
   }
+  
 
   makeItRain() {
     import("@lrnwebcomponents/multiple-choice/lib/confetti-container.js").then(
