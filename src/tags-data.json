@@ -12,69 +12,69 @@
     "hax-logo": {
       "Good form": {
         "correct": true,
-        "feedback": "Good Form: The shape of the vase clearly demonstrates craftsmanship."
+        "feedback": "Correct - Good Form: The shape of the vase clearly demonstrates craftsmanship."
       },
       "Poor taste": {
         "correct": false,
-        "feedback": "Poor Taste: Taste is in the eye of the designer as well as the viewer."
+        "feedback": "Incorrect - Poor Taste: Taste is in the eye of the designer as well as the viewer."
       },
       "Contrasting themes": {
         "correct": false,
-        "feedback": "Contrasting Themes: There is uniformity in the shape, but there is no depth to this media to imply that it is contrasting with other figures."
+        "feedback": "Incorrect - Contrasting Themes: There is uniformity in the shape, but there is no depth to this media to imply that it is contrasting with other figures."
       },
       "AI": {
         "correct": true,
-        "feedback": "AI: While a modification of prior work, this is still AI generative work."
+        "feedback": "Correct - AI: While a modification of prior work, this is still AI generative work."
       },
       "Shading": {
         "correct": false,
-        "feedback": "Shading: While there is a light source and a shadow cast, shading is a term used for pencil based sketching."
+        "feedback": "Incorrect - Shading: While there is a light source and a shadow cast, shading is a term used for pencil based sketching."
       },
       "Original work": {
         "correct": false,
-        "feedback": "Original Work: Artwork created from gerenateive AI can not be original since it is trained on other artists work."
+        "feedback": "Incorrect - Original Work: Artwork created from gerenateive AI can not be original since it is trained on other artists work."
       },
       "Accessible": {
         "correct": false,
-        "feedback": "Accessible: The color scheme while high contrast in some areas, loses form in others and has written text unrelated to the character."
+        "feedback": "Incorrect - Accessible: The color scheme while high contrast in some areas, loses form in others and has written text unrelated to the character."
       }
     },
     "pig": {
       "Has a Hat": {
         "correct": true,
-        "feedback": "Has a Hat: Has a mix of brown, red and blue"
+        "feedback": "Correct - Has a Hat: Has a mix of brown, red and blue"
       },
       "Is a pig": {
         "correct": true,
-        "feedback": "Is a pig: Its someones pet pig."
+        "feedback": "Correct - Is a pig: Its someones pet pig."
       },
       "There are flowers": {
         "correct": true,
-        "feedback": "There are flowers: There are some pink flowers"
+        "feedback": "Correct - There are flowers: There are some pink flowers"
       },
       "Is wearing a jacket": {
         "correct": false,
-        "feedback": "Is wearing a jacket: Is not wearing a jacket, its more of a sweater."
+        "feedback": "Incorrect - Is wearing a jacket: Is not wearing a jacket, its more of a sweater."
       },
       "Wearing a hoodie": {
         "correct": true,
-        "feedback": "Wearing a Hoodie: The pig is wearing a pink hoodie."
+        "feedback": "Correct - Wearing a Hoodie: The pig is wearing a pink hoodie."
       },
       "Standing": {
         "correct": true,
-        "feedback": "Standing: The pig is standing, even though it may look like its not"
+        "feedback": "Correct - Standing: The pig is standing, even though it may look like its not"
       },
       "Contrasting themes": {
         "correct": false,
-        "feedback": "Contrasting themes: There is uniformity in the shape, but there is no depth to imply that it is contrasting."
+        "feedback": "Incorrect - Contrasting themes: There is uniformity in the shape, but there is no depth to imply that it is contrasting."
       },
       "AI": {
         "correct": false,
-        "feedback": "AI: This picture was taken with an iphone camera, so this is not AI generative work."
+        "feedback": "Incorrect - AI: This picture was taken with an iphone camera, so this is not AI generative work."
       },
       "Accessible": {
         "correct": false,
-        "feedback": "Accessible: The color scheme while high contrast in some areas, loses form in others and has written text unrelated to the character."
+        "feedback": "Incorrect - Accessible: The color scheme while high contrast in some areas, loses form in others and has written text unrelated to the character."
       }
     }
   }

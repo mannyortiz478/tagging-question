@@ -1,7 +1,7 @@
-import { LitElement, html, css } from 'lit';
+import { html, css } from 'lit';
 import { DDD } from "@lrnwebcomponents/d-d-d/d-d-d.js";
 
-export class TaggingQuestion extends LitElement {
+export class TaggingQuestion extends DDD {
   static get tag() {
     return 'tagging-question';
   }
@@ -47,21 +47,29 @@ export class TaggingQuestion extends LitElement {
         max-width: 100%;
       }
 
+      /* image div */
+      .image-div {
+        width: 100%;
+        display: flex;
+        justify-content: center;
+      }
+
       #question {
-        font-family: "Gill Sans", sans-serif;;
+        font-family: Roboto (ddd-font-primary) [--ddd-font-primary];
         text-align: center;
         color: var(--ddd-theme-default-potentialMidnight);
         padding: var(--ddd-spacing-2);
-        font-size: var(--ddd-font-size-s);
+        font-size: var(--ddd-theme-body-font-size);
         box-sizing: border-box;
         margin-bottom: var(--ddd-spacing-8);
       }
 
+      /* css applied for the desccription toggle */
       .description-title {
-        font-family: "Gill Sans", sans-serif;;
+        font-family: Roboto (ddd-font-primary) [--ddd-font-primary];
         text-align: center;
         padding: var(--ddd-spacing-2);
-        font-size: var(--ddd-font-size-s);
+        font-size: var(--ddd-theme-body-font-size);
         box-sizing: border-box;
         margin-bottom: var(--ddd-spacing-8);
       }
@@ -74,6 +82,7 @@ export class TaggingQuestion extends LitElement {
         flex-direction: column;
       }
 
+      /* Dropped zone box area of where the chips/tags are placed */
       #droppedTags {
         box-sizing: border-box;
         padding: 24px 12px;
@@ -89,7 +98,7 @@ export class TaggingQuestion extends LitElement {
 
       #dropTagHint {
         display: flex;
-        font-family: "Gill Sans", sans-serif;
+        font-family: Roboto (ddd-font-primary) [--ddd-font-primary];
         justify-content: center;
         align-items: center;
         opacity: 50%;
@@ -109,6 +118,7 @@ export class TaggingQuestion extends LitElement {
         text-align: center;
       }
 
+      /* image the user places */
       .image {
         max-width: 25%;
         height: auto;
@@ -166,19 +176,11 @@ export class TaggingQuestion extends LitElement {
       .incorrect {
         border: solid 1px var(--incorrect-col);
         color: var(--incorrect-col);
-        background: var(--bg-color);
+        background: var(--bg);
       }
       .incorrect:nth-child(n):focus, .incorrect:nth-child(n):hover {
         background: var(--incorrect-col);
-        color: var(--bg-color);
-      }
-
-      .disabled {
-        opacity: 50% !important;
-        pointer-events: none !important;
-        user-select: none !important;
-        background-color: var(--bg-color) !important;
-        color: var(--text-1) !important;
+        color: var(--bg);
       }
 
       confetti-container {
@@ -218,6 +220,21 @@ export class TaggingQuestion extends LitElement {
         cursor: pointer;
     }
 
+    #controls #checkBtn:hover {
+        background-color: var(--ddd-theme-default-forestGreen);
+    }
+
+    #controls #resetBtn:hover {
+        background-color: red;
+    }
+
+    /* Animates the border of the drop zone, so the user knows when to drag. */
+    #droppedTags.drag-over {
+      border: dashed 3px;
+      border-color: var(--ddd-theme-default-wonderPurple);
+      animation: borderAnimation 3s infinite;
+    }
+
     /* Reset button */
     #controls #resetBtn {
         background-color: var(--ddd-theme-default-original87Pink);
@@ -233,7 +250,6 @@ export class TaggingQuestion extends LitElement {
     `;
   }
 
- 
   connectedCallback() {
     super.connectedCallback();
 
@@ -283,15 +299,18 @@ export class TaggingQuestion extends LitElement {
 
   }
 
-  // Drag tag jawns from answer bank -> selected answers
+  // Drag tags from answer bank
   handleDragStart(event) {
     event.dataTransfer.setData('text/plain', event.target.textContent);
     this.currentTag = event.target;
   }
   handleDragOver(event) {
     event.preventDefault();
+    
+    //If the user clicks and drags any of the chips -> animates the border to dashed and purple .drag-over
+    this.shadowRoot.getElementById('droppedTags').classList.add('drag-over');
   }
-  // instead of dropping, allow it to be clicked for mobile and stuff
+  // instead of dropping, allow it to be clicked for mobile
   droppedClicked(event) {
     this.currentTag = event.target;
     if (this.checked === false) {
@@ -317,6 +336,9 @@ export class TaggingQuestion extends LitElement {
   handleDrop(event) {
     event.preventDefault();
 
+    //if the user lets goof the chip it removes the dashed and color animation effect of the dropped tag border
+    this.shadowRoot.getElementById('droppedTags').classList.remove('drag-over');
+
     const droppedTags = this.shadowRoot.getElementById('droppedTags');
     const button = this.currentTag;
 
@@ -324,8 +346,8 @@ export class TaggingQuestion extends LitElement {
         button.remove();
         droppedTags.appendChild(button);
 
-        // Hide hint:
         this.shadowRoot.querySelector('#dropTagHint').style.display = 'none';
+
         // Show checkanswers button:
         const controlBtns = this.shadowRoot.querySelectorAll('.controlBtn');
         controlBtns.forEach(btn => {
@@ -351,7 +373,6 @@ export class TaggingQuestion extends LitElement {
         this.currentTag.remove();
         droppedTags.append(this.currentTag);
 
-        // Hide hint:
         this.shadowRoot.querySelector('#dropTagHint').style.display = 'none';
         // Show checkanswers button:
         const controlBtns = this.shadowRoot.querySelectorAll('.controlBtn');
@@ -361,7 +382,7 @@ export class TaggingQuestion extends LitElement {
       }
     }
   }
-  // dropped not lcicked
+  // dropped not clicked
   handleDropReverse(event) {
     event.preventDefault();
 
@@ -389,7 +410,7 @@ export class TaggingQuestion extends LitElement {
     // make it so it can be checked again:
     this.checked = false;
 
-    // allow button to be clicked (or look like it can be clicked) again:
+    // allow button to be clicked:
     this.shadowRoot.querySelector('#checkBtn').classList.remove('disabled');
 
     // Reset feedback section:
@@ -408,17 +429,17 @@ export class TaggingQuestion extends LitElement {
         mia.classList.remove("incorrect");
         mia.title = "";
 
-        // FEEDBACK SEC
+        //Feedback Section
         this.shadowRoot.querySelector('#feedbackSection').innerHTML = ``;
     });
 
-    // Remove disable class and disable -tabindexing from droppedTags:
+    // Remove disable class and disable
     const droppedTagsChips = this.shadowRoot.querySelectorAll('#droppedTags .chip');
     for (const tag of droppedTagsChips) {
         tag.classList.remove("noPointerEvents");
         tag.removeAttribute('tabindex');
     }
-    // Remove disable class and disable -tabindexing from bankedTags:
+    // Remove disable class and disable:
     const bankedTagsChips = this.shadowRoot.querySelectorAll('#bankedTags .chip');
       for (const tag of bankedTagsChips) {
           tag.classList.remove("noPointerEvents");
@@ -438,20 +459,22 @@ export class TaggingQuestion extends LitElement {
     // Hide check answers button:
     const controlBtns = this.shadowRoot.querySelectorAll('.controlBtn');
     controlBtns.forEach(btn => {
-        btn.style.visibility = 'hidden';
+        if (btn.id !== 'resetBtn') { // Only hide Check button and feedback section
+            btn.style.visibility = 'hidden';
+        }
     });
-  }
+}
+
 
 
   checkTags() {
     if(this.checked == false){
       this.checked = true;
 
-      // helps compare if ALL are correct, as opposed to each individual correctness when itterated 
+      // helps compare if All are correct
       let allDroppedCorrect = true;
       let allBankedCorrect = true;
   
-      this.shadowRoot.querySelector('#checkBtn').classList.add('disabled');
   
       // Reset feedback section
       this.shadowRoot.querySelector('#feedbackSection').style.display = 'flex';
@@ -464,7 +487,7 @@ export class TaggingQuestion extends LitElement {
           if(isCorrect){
             tag.classList.add("correct");
 
-            // FEEDBACK SEC CORRECT
+            // Feedback Section Correct
             this.shadowRoot.querySelector('#feedbackSection').innerHTML += `<li class="green">${tag.dataset.feedback}</li>`;
           }
           else {
@@ -472,7 +495,7 @@ export class TaggingQuestion extends LitElement {
             allDroppedCorrect = false;
             tag.title = tag.dataset.feedback;
 
-            // FEEDBACK SEC INCORRECT
+            // Feedback Section Incorrect
             this.shadowRoot.querySelector('#feedbackSection').innerHTML += `<li class="red">${tag.dataset.feedback}</li>`;
           }
           tag.classList.add("noPointerEvents");
@@ -487,17 +510,13 @@ export class TaggingQuestion extends LitElement {
             allBankedCorrect = false;
             tag.title = tag.dataset.feedback;
 
-            // FEEDBACK SEC
-            //this.shadowRoot.querySelector('#feedbackSection').innerHTML += `<li class="green">${tag.dataset.feedback}</li>`;
           }
           tag.classList.add("noPointerEvents");
           tag.setAttribute('tabindex', -1);
       }
   
-      if(allDroppedCorrect && allBankedCorrect) {  // All answers (banked and dropped) are where they should be
-        //console.log("100%!!");
+      if(allDroppedCorrect && allBankedCorrect) { 
         this.makeItRain();
-        //this.shadowRoot.querySelector('#feedbackSection').style.display = 'none';
 
         this.shadowRoot.querySelector('#feedbackSection').innerHTML = ``;
         const bankedTags = this.shadowRoot.querySelectorAll('#droppedTags .chip');
@@ -505,7 +524,6 @@ export class TaggingQuestion extends LitElement {
             allBankedCorrect = false;
             tag.title = tag.dataset.feedback;
 
-            // Feedback
             this.shadowRoot.querySelector('#feedbackSection').innerHTML += `<li class="green">${tag.dataset.feedback}</li>`;
           }
       }
@@ -519,7 +537,7 @@ export class TaggingQuestion extends LitElement {
   render() {
     return html`
       <confetti-container id="confetti">
-        <div style="width: 100%; display: flex; justify-content: center;">
+        <div class="image-div">
           <img class="image" src=${this.imageURL}>
         </div>
         <div>
@@ -557,7 +575,7 @@ export class TaggingQuestion extends LitElement {
     `;
   }
   
-
+//confetti for when the user gets all of it right
   makeItRain() {
     import("@lrnwebcomponents/multiple-choice/lib/confetti-container.js").then(
       (module) => {
