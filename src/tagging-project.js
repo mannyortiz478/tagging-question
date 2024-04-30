@@ -14,7 +14,7 @@ export class TaggingQuestion extends DDD {
     this.checked = false;
     this.answerSet = "default";
     this.showDescription = false;
-    this.source = new URL('../src/tags-data.json', import.meta.url).href;
+    this.source = new URL('../assets/tags-data.json', import.meta.url).href;
   }
 
   static get styles() {
